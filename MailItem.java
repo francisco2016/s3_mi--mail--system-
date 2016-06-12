@@ -1,6 +1,6 @@
 
 /**
- * Write a description of class MailItem here.
+ * Write a description of class MailClient here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -8,26 +8,46 @@
 public class MailItem
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private String from;
+    private String to;
+    private String message;
+
 
     /**
-     * Constructor for objects of class MailItem
+     * Constructor for objects of class MailClient
      */
-    public MailItem()
-    {
-        // initialise instance variables
-        x = 0;
+    public MailItem(String from, String to, String message) {
+        this.from = from;
+        this.to = to;
+        this.message = message;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public String getFrom() {
+        return from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+    
+    public void print(){
+        System.out.println(" Mensaje de: " +from+ "\n Para: " +to+ "\n Mensaje: " +message);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
