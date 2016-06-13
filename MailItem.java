@@ -2,8 +2,7 @@
 /**
  * Write a description of class MailClient here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Francisco
  */
 public class MailItem
 {
@@ -38,6 +37,25 @@ public class MailItem
         System.out.println(" Mensaje de: " +from+ "\n Para: " +to+ "\n Mensaje: " +message);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
