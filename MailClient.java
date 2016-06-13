@@ -48,8 +48,8 @@ public class MailClient
      *  contenido del mensaje), cree un email (objeto MailItem) basándose en la información de dichos 
      *  parámetros y lo envíe al servidor asociado a ese cliente.
      */
-    public void sendMailItem(String para, String mensaje){
-        MailItem email = new MailItem(user, para, mensaje);
+    public void sendMailItem(String para, String asunto, String mensaje){
+        MailItem email = new MailItem(user, para, asunto, mensaje);
         server.post(email);
     }  
 }
