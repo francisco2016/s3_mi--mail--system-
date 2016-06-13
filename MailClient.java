@@ -17,7 +17,7 @@ public class MailClient
     {
         //server = new MailServer();
         this.server = server; 
-        this.user = user; //representa la dirección de correo del usuario que usa ese cliente
+        this.user = user; //representa la dirección de correo del usuario que usa ese cliente.
     }
     
     /**
@@ -34,7 +34,7 @@ public class MailClient
      * mensaje por pantalla informando de ello.
      */
     public void printNextMailItem(){
-        MailItem email = server.getNextMailItem(user);
+        MailItem email = getNextMailItem ();
         if(email == null){
              System.out.println("No new mail.");
         }
@@ -42,7 +42,18 @@ public class MailClient
               email.print();
         }
     }
-    
+     /**
+      *Muestra por pantalla el nº de emails recibidos. 
+      */
+     public void cuantosEmailsTenemos(){
+         if(server.howManyMailItems(user) == 0){
+            System.out.println("No tiene ningún mensaje.");
+         }
+         else{
+             System.out.println("Tiene: " +server.howManyMailItems(user)+ " mensajes sin leer.");
+         }
+     }
+     
     /**
      *  reciba 2 parámetros (un String indicando para quién es el mensaje y otro String indicando el 
      *  contenido del mensaje), cree un email (objeto MailItem) basándose en la información de dichos 
@@ -52,7 +63,20 @@ public class MailClient
         MailItem email = new MailItem(user, para, asunto, mensaje);
         server.post(email);
     }  
-}
+    
+    /**
+     *  que obtenga del servidor el siguiente mensaje del usuario y responda automáticamente al emisor indicando que estamos 
+     *  fuera de la oficina
+     */
+    public void getNextMailItemAndSendAutomaticRespond(){
+        MailItem email = getNextMailItem( );
+        if(email != null){
+             sendMailItem( email.getFrom(),"RE "  +email.getSubject(), "  No estamos en la oficina. \n "  +email.getMessage());
+        }
+         
+        }
+    }
+ 
 
 
 

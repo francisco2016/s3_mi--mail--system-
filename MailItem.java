@@ -31,7 +31,7 @@ public class MailItem
         return to;
     }
     
-     public String  subject() {
+     public String  getSubject() {
         return subject;
     } 
 
