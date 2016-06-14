@@ -42,6 +42,7 @@ public class MailItem
     public void print(){
         System.out.println(" Mensaje de: " +from+ "\n Para: " +to
         + "\n Asunto: " +subject+ "\n Mensaje: " +message);
+        System.out.println("--                           --");
     }
 }
 
