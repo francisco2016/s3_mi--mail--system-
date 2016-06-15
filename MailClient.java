@@ -20,6 +20,8 @@ public class MailClient
     // at para almacenar la dirección del mensaje más largo.
     private String direccionMeilLargo;
     private String meilLargo;
+    //at para almacenar mensajes spam
+    private MailItem ultimoSpam;
 
     /**
      * Constructor for objects of class MailClient
@@ -33,9 +35,9 @@ public class MailClient
         enviados = 0;
         recibidos = 0;
         conSpam = 0;
-         meilLargo = "";
+        meilLargo = "";
         direccionMeilLargo ="";
-        
+
     }
 
     /**
@@ -50,7 +52,7 @@ public class MailClient
                 meilLargo = mens;
                 direccionMeilLargo = email.getFrom();
             }
-            
+
             if(mens.contains("regalo") || mens.contains("promocion")){
                 // spam = true;
                 if(mens.contains("trabajo")){
@@ -59,7 +61,8 @@ public class MailClient
                 }
                 else {
                     spam = true;
-                    email = null;
+                    mens = null;
+                    ultimoSpam = email;
                     conSpam  += 1;
                 }
             }
@@ -160,21 +163,33 @@ public class MailClient
             System.out.println("--                           --");
         }
         else{
-             System.out.println("Porcentaje de Spam: 0%"  );
-             System.out.println("--                           --");
+            System.out.println("Porcentaje de Spam: 0%"  );
+            System.out.println("--                           --");
         }
         //la dirección de la persona que nos envío el mensaje más largo junto con cuantos caracteres
         //tenía ese mensaje. 
-         if(direccionMeilLargo != null){
-             System.out.println("El mensaje más largo tiene: " +meilLargo.length()+ " caracteres.\nla direccion es: " +
-                                        direccionMeilLargo   );     
+        if(direccionMeilLargo != null){
+            System.out.println("El mensaje más largo tiene: " +meilLargo.length()+ " caracteres.\n enviado por: " +
+                                    direccionMeilLargo   );  
+            System.out.println("--                           --");
         }
-    
-     }
+
+    }
+
+    /**
+     * permita en cualquier momento mostrar por pantalla los datos del último mensaje de spam recibido. Si no hubiera
+     * llegado aún spam, entonces debe informar de ello.
+     */
+    public void  showInfoLastSpam(){
+        if(ultimoSpam != null){
+            ultimoSpam.print();
+        }
+        else{
+            System.out.println("No ha recibido ningún Spam.");
+        }
+    }
 }
-
-
-
+ 
 
 
 
