@@ -136,11 +136,32 @@ public class MailClient
      *  parámetros y lo envíe al servidor asociado a ese cliente.
      */
     public void sendMailItem(String para, String asunto, String mensaje){
-        MailItem email = new MailItem(user, para, asunto, mensaje);
-        server.post(email);
+        MailItem email = new MailItem(user, para, asunto, mensaje); 
+        
+        int numCaracteres = email.getMessage().length();
+        
+        server.post(email, numCaracteres);
         enviados += 1;
-    }  
+    } 
+//     public void sendMailItem(String para, String asunto, String mensaje){
+//         MailItem email = new MailItem(user, para, asunto, mensaje); 
+//         server.post(email);
+//         enviados += 1;
+//     } 
+    
+     /**
+     * que envíe un mensaje de email (solicitando para ello destinatario, asunto y mensaje); para 
+     * simular que este mensaje se transmite con errores haz que este método envie el mensaje modificado de forma que siempre
+     * que aparezca en el cuerpo del mensaje una "o" se cambie a "#o" y siempre que aparezca una "i" se cambie a "$i".
+     */
+    public void  sendMailItemWithTransmissionError (String to, String subject, String message){
 
+        message = message.replace( "o" ,"#o").replace("i","$i");
+        sendMailItem(to, subject, message);
+        enviados += 1;
+
+    }
+    
     /**
      *  que obtenga del servidor el siguiente mensaje del usuario y responda automáticamente al emisor indicando que estamos 
      *  fuera de la oficina
@@ -207,18 +228,7 @@ public class MailClient
         }
     }
 
-    /**
-     * que envíe un mensaje de email (solicitando para ello destinatario, asunto y mensaje); para 
-     * simular que este mensaje se transmite con errores haz que este método envie el mensaje modificado de forma que siempre
-     * que aparezca en el cuerpo del mensaje una "o" se cambie a "#o" y siempre que aparezca una "i" se cambie a "$i".
-     */
-    public void  sendMailItemWithTransmissionError (String to, String subject, String message){
-
-        message = message.replace( "o" ,"#o").replace("i","$i");
-        sendMailItem(to, subject, message);
-        enviados += 1;
-
-    }
+   
 }
 
 
